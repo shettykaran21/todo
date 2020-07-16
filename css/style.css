@@ -1,0 +1,159 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap');
+
+:root {
+  --primary-dark: #0b132b;
+  --secondary-dark: #1c2541;
+  --tertiary-color: #3a506b;
+  --primary-light: #6fffe9;
+  --secondary-light: #5bc0be;
+}
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* ----Global---- */
+body {
+  font-family: 'Lato', sans-serif;
+  line-height: 1.4;
+  color: #fff;
+  background: #0b132b;
+}
+
+a {
+  color: #fff;
+}
+
+ul {
+  list-style: none;
+}
+
+h1 {
+  font-size: 2.5rem;
+}
+
+/* ----Utilities---- */
+.container {
+  max-width: 1550px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.btn {
+  border: none;
+  display: inline-block;
+  padding: 8px 16px;
+  text-decoration: none;
+  color: inherit;
+  outline: none;
+  background-color: inherit;
+  text-align: center;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.btn-primary {
+  background-color: var(--secondary-light);
+  color: var(--primary-dark);
+}
+.logo {
+  height: 35px;
+  width: 35px;
+}
+
+.my-logo {
+  letter-spacing: 0.2rem;
+}
+
+/* ------------Header------------ */
+/* ----Navbar---- */
+#navbar {
+  height: 60px;
+  background-color: var(--secondary-dark);
+}
+
+#navbar .navbar-container {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+#navbar .navbar-container .logo {
+  position: absolute;
+  right: 0;
+}
+/* ----Sidebar---- */
+.sidebar {
+  display: none;
+  position: fixed !important;
+  height: 100%;
+  width: 200px;
+  padding-left: 48px;
+  background-color: #1c2541;
+  z-index: 1;
+  animation: animateleft 0.2s cubic-bezier(0.4, 0, 1, 1);
+}
+
+.sidebar ul li i {
+  width: 30px;
+}
+
+.sidebar ul li .close {
+  font-size: 1.4rem;
+}
+
+.sidebar-block .sidebar-item {
+  width: 100%;
+  padding: 8px 16px;
+  text-align: left;
+  border: none;
+  outline: none;
+}
+/* ------------Main------------ */
+main {
+  height: calc(100vh - 60px);
+  transition: margin-left 0.2s cubic-bezier(0.4, 0, 1, 1);
+  background: linear-gradient(rgb(11, 19, 43, 0.8), rgb(11, 19, 43, 0.8)),
+    url('/img/bg.jpg') center center/cover no-repeat;
+}
+
+main .main-container {
+  height: 100%;
+  max-width: 50%;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* ----Footer---- */
+footer {
+  height: 80px;
+  color: rgb(205, 205, 205);
+}
+
+footer .footer-container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+footer .footer-container ul {
+  display: flex;
+}
+/* ----Keyframes---- */
+@keyframes animateleft {
+  from {
+    left: -300px;
+    opacity: 0;
+  }
+  to {
+    left: 0;
+    opacity: 1;
+  }
+}
