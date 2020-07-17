@@ -17,7 +17,7 @@
     <header>
       <nav id="navbar">
         <div class="container navbar-container">
-          <a href="#" id="openNav" onclick="openNav()" class="btn">
+          <a href="#" id="openNav" class="btn">
             <i class="fas fa-bars fa-2x"></i>
           </a>
           <img src="/img/logo-white.png" class="logo" alt="logo" />
@@ -28,7 +28,7 @@
     <div class="sidebar sidebar-block" id="mySidebar">
       <ul>
         <li>
-          <a href="#" class="btn close sidebar-item" onclick="closeNav()"
+          <a href="#" class="btn close sidebar-item" id="closeNav"
             ><i
               class="fas fa-times"
               style="color: rgb(156, 28, 28); font-size: 1.5rem;"
@@ -63,32 +63,63 @@
       <div class="main-container">
         <div>
           <h1>Today</h1>
-          <div>
-            <label for="task">New Task</label>
-            <input type="text" name="task" id="task" />
-          </div>
-          <input type="submit" value="Add Task" class="btn btn-primary" />
+          <form id="task-form">
+            <div class="field">
+              <input
+                type="text"
+                name="task"
+                id="task"
+                class="input"
+                placeholder=" "
+              />
+              <label for="task" class="label">New Task</label>
+            </div>
+            <input type="submit" value="Add Task" class="btn btn-primary" />
+          </form>
         </div>
-        <div>
-          <h1>Tasks</h1>
+
+        <div class="task-list">
+          <h2>Tasks</h2>
+          <div class="field">
+            <input
+              type="text"
+              name="filter"
+              id="filter"
+              class="input"
+              placeholder=" "
+            />
+            <label for="filter" class="label">Filter Tasks</label>
+          </div>
+          <ul class="collection"></ul>
+          <a href="#" class="clear-tasks btn btn-secondary">Clear tasks</a>
         </div>
       </div>
     </main>
     <footer>
       <div class="footer-container">
         <p>
-          Made with <i class="fas fa-heart" style="color: red;"></i> by
+          Made with &nbsp;
+          <i class="fas fa-heart" style="color: red;"></i> &nbsp; by
           <span class="my-logo">KARAN SHETTY</span>
         </p>
         <ul>
           <li>
-            <a href="https://www.github.com/shettykaran21"
+            <a href="https://www.github.com/shettykaran21" target="_blank"
               ><i class="fab fa-github fa-2x"></i
             ></a>
           </li>
           <li>
-            <a href="https://www.github.com/shettykaran21"
+            <a
+              href="https://www.linkedin.com/in/karan-shetty-712910156/"
+              target="_blank"
               ><i class="fab fa-linkedin fa-2x"></i
+            ></a>
+          </li>
+          <li>
+            <a
+              href="https://www.facebook.com/karan.shetty.31924"
+              target="_blank"
+              ><i class="fab fa-facebook-square fa-2x"></i
             ></a>
           </li>
         </ul>
