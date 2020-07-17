@@ -25,7 +25,7 @@
       </nav>
     </header>
 
-    <div class="sidebar sidebar-block" id="mySidebar">
+    <div class="sidebar" id="mySidebar">
       <ul>
         <li>
           <a href="#" class="btn close sidebar-item" id="closeNav"
@@ -36,23 +36,23 @@
             >Close</a
           >
         </li>
-        <li>
-          <a href="#" class="sidebar-item btn"
+        <li class="current">
+          <a href="index.html" class="sidebar-item btn"
             ><i class="far fa-sun"></i>Today</a
           >
         </li>
         <li>
-          <a href="#" class="sidebar-item btn"
+          <a href="important.html" class="sidebar-item btn"
             ><i class="far fa-star"></i>Important</a
           >
         </li>
         <li>
-          <a href="#" class="sidebar-item btn"
+          <a href="planned.html" class="sidebar-item btn"
             ><i class="fas fa-calendar-week"></i>Planned</a
           >
         </li>
         <li>
-          <a href="#" class="sidebar-item btn"
+          <a href="completed.html" class="sidebar-item btn"
             ><i class="far fa-check-circle"></i>Completed</a
           >
         </li>
@@ -62,7 +62,10 @@
     <main>
       <div class="main-container">
         <div>
-          <h1>Today</h1>
+          <h1 class="l-heading">
+            <i class="far fa-sun" style="color: #fffb00; opacity: 0.6;"></i>
+            Today
+          </h1>
           <form id="task-form">
             <div class="field">
               <input

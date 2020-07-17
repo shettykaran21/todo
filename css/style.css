@@ -98,12 +98,17 @@ input:disabled {
 .logo {
   height: 35px;
   width: 35px;
+  cursor: pointer;
 }
 
 .my-logo {
   letter-spacing: 0.1rem;
   font-weight: 200;
   margin: 0 0.2rem;
+}
+
+.current {
+  background: var(--secondary-dark);
 }
 
 .field {
@@ -182,10 +187,17 @@ input:disabled {
   position: fixed !important;
   height: 100%;
   min-width: 200px;
-  padding-left: 48px;
   background-color: var(--primary-dark);
   z-index: 1;
   animation: animateleft 0.2s cubic-bezier(0.4, 0, 1, 1);
+}
+
+.sidebar ul li {
+  transition: all 0.1s ease;
+}
+
+.sidebar ul li:hover {
+  background-color: var(--secondary-dark);
 }
 
 .sidebar ul li i {
@@ -196,7 +208,7 @@ input:disabled {
   font-size: 1.4rem;
 }
 
-.sidebar-block .sidebar-item {
+.sidebar .sidebar-item {
   width: 100%;
   padding: 8px 16px;
   text-align: left;
@@ -249,7 +261,7 @@ main .main-container > div {
 
 /* ----Footer---- */
 footer {
-  height: 80px;
+  height: 100px;
   color: rgb(168, 168, 168);
   font-size: 0.9rem;
 }

@@ -4,14 +4,23 @@ const clearBtn = document.querySelector('.clear-tasks');
 const filter = document.querySelector('#filter');
 const taskInput = document.querySelector('#task');
 
-document.getElementById('openNav').addEventListener('click', openNav);
-document.getElementById('closeNav').addEventListener('click', closeNav);
+const main = document.querySelector('main');
+const sidebar = document.getElementById('mySidebar');
+const openSidebar = document.getElementById('openNav');
+const closeSidebar = document.getElementById('closeNav');
 
-document.addEventListener('DOMContentLoaded', getTasks);
-form.addEventListener('submit', addTask);
-taskList.addEventListener('click', removeTask);
-clearBtn.addEventListener('click', clearTasks);
-filter.addEventListener('keyup', filterTasks);
+loadEventListeners();
+
+function loadEventListeners() {
+  openSidebar.addEventListener('click', openNav);
+  closeSidebar.addEventListener('click', closeNav);
+
+  document.addEventListener('DOMContentLoaded', getTasks);
+  form.addEventListener('submit', addTask);
+  taskList.addEventListener('click', removeTask);
+  clearBtn.addEventListener('click', clearTasks);
+  filter.addEventListener('keyup', filterTasks);
+}
 
 // Get tasks from local storage
 function getTasks() {
@@ -136,14 +145,16 @@ function filterTasks(e) {
 }
 
 function openNav() {
-  document.querySelector('main').style.marginLeft = '15%';
-  document.getElementById('mySidebar').style.width = '15%';
-  document.getElementById('mySidebar').style.display = 'block';
-  document.getElementById('openNav').style.display = 'none';
+  main.style.marginLeft = '15%';
+  sidebar.style.width = '15%';
+  sidebar.style.display = 'block';
+  openSidebar.style.display = 'none';
 }
 
 function closeNav() {
-  document.querySelector('main').style.marginLeft = '0%';
-  document.getElementById('mySidebar').style.display = 'none';
-  document.getElementById('openNav').style.display = 'inline-block';
+  main.style.marginLeft = '0%';
+  sidebar.style.display = 'none';
+  openSidebar.style.display = 'inline-block';
 }
+
+function date() {}
