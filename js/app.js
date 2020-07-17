@@ -7,10 +7,36 @@ const taskInput = document.querySelector('#task');
 document.getElementById('openNav').addEventListener('click', openNav);
 document.getElementById('closeNav').addEventListener('click', closeNav);
 
+document.addEventListener('DOMContentLoaded', getTasks);
 form.addEventListener('submit', addTask);
 taskList.addEventListener('click', removeTask);
 clearBtn.addEventListener('click', clearTasks);
 filter.addEventListener('keyup', filterTasks);
+
+// Get tasks from local storage
+function getTasks() {
+  let tasks;
+
+  if (localStorage.getItem('tasks') === null) {
+    tasks = [];
+  } else {
+    tasks = JSON.parse(localStorage.getItem('tasks'));
+  }
+
+  tasks.forEach((task) => {
+    const li = document.createElement('li');
+    li.className = 'collection-item';
+    li.appendChild(document.createTextNode(task));
+
+    const link = document.createElement('a');
+    link.className = 'delete-item';
+    link.innerHTML = `<i class="fa fa-trash-alt"></i>`;
+
+    li.appendChild(link);
+
+    taskList.appendChild(li);
+  });
+}
 
 function addTask(e) {
   if (taskInput.value === '') {
@@ -30,19 +56,53 @@ function addTask(e) {
 
   taskList.appendChild(li);
 
-  taskInput.value = '';
+  // Store in local storage
+  storeTaskInLocalStorage(taskInput.value);
 
-  console.log(taskList);
+  taskInput.value = '';
 
   e.preventDefault();
 }
 
+function storeTaskInLocalStorage(task) {
+  let tasks;
+
+  if (localStorage.getItem('tasks') === null) {
+    tasks = [];
+  } else {
+    tasks = JSON.parse(localStorage.getItem('tasks'));
+  }
+
+  tasks.push(task);
+
+  localStorage.setItem('tasks', JSON.stringify(tasks));
+}
+
 function removeTask(e) {
   if (e.target.parentElement.classList.contains('delete-item')) {
-    if (confirm('Are you sure?')) {
+    if (confirm('Are you sure you want to delete this task?')) {
       e.target.parentElement.parentElement.remove();
     }
   }
+
+  removeTaskFromLocalStorage(e.target.parentElement.parentElement);
+}
+
+function removeTaskFromLocalStorage(taskItem) {
+  let tasks;
+  if (localStorage.getItem('tasks') === null) {
+    tasks = [];
+  } else {
+    tasks = JSON.parse(localStorage.getItem('tasks'));
+  }
+
+  tasks.forEach((task, index) => {
+    if (taskItem.textContent === task) {
+      tasks.splice(index, 1);
+    }
+  });
+
+  localStorage.setItem('tasks', JSON.stringify(tasks));
 }
 
 function clearTasks() {
@@ -52,6 +112,13 @@ function clearTasks() {
       taskList.removeChild(taskList.firstChild);
     }
   }
+
+  clearTasksFromLocalStorage();
+}
+
+// Clear all tasks from local storage
+function clearTasksFromLocalStorage() {
+  localStorage.removeItem('tasks');
 }
 
 function filterTasks(e) {
