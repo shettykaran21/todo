@@ -21,7 +21,7 @@ body {
   font-family: 'Lato', sans-serif;
   line-height: 1.4;
   color: #fff;
-  background: #0b132b;
+  background: var(--primary-dark);
 }
 
 a {
@@ -162,7 +162,7 @@ input:disabled {
 /* ----Navbar---- */
 #navbar {
   height: 60px;
-  background-color: var(--secondary-dark);
+  background-color: var(--primary-dark);
 }
 
 #navbar .navbar-container {
@@ -183,7 +183,7 @@ input:disabled {
   height: 100%;
   min-width: 200px;
   padding-left: 48px;
-  background-color: #1c2541;
+  background-color: var(--primary-dark);
   z-index: 1;
   animation: animateleft 0.2s cubic-bezier(0.4, 0, 1, 1);
 }
