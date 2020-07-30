@@ -3,6 +3,8 @@ const taskList = document.querySelector('.collection');
 const clearBtn = document.querySelector('.clear-tasks');
 const filter = document.querySelector('#filter');
 const taskInput = document.querySelector('#task');
+const today = document.querySelector('.today');
+const liInput = document.querySelector('.edit-input');
 
 const main = document.querySelector('main');
 const sidebar = document.getElementById('mySidebar');
@@ -10,6 +12,7 @@ const openSidebar = document.getElementById('openNav');
 const closeSidebar = document.getElementById('closeNav');
 
 loadEventListeners();
+// createDate();
 
 function loadEventListeners() {
   openSidebar.addEventListener('click', openNav);
@@ -20,6 +23,8 @@ function loadEventListeners() {
   taskList.addEventListener('click', removeTask);
   clearBtn.addEventListener('click', clearTasks);
   filter.addEventListener('keyup', filterTasks);
+  taskList.addEventListener('click', editTask);
+  liInput.addEventListener('keyup', uneditTask);
 }
 
 // Get tasks from local storage
@@ -35,13 +40,24 @@ function getTasks() {
   tasks.forEach((task) => {
     const li = document.createElement('li');
     li.className = 'collection-item';
-    li.appendChild(document.createTextNode(task));
 
-    const link = document.createElement('a');
-    link.className = 'delete-item';
-    link.innerHTML = `<i class="fa fa-trash-alt"></i>`;
+    const input = document.createElement('input');
+    input.setAttribute('type', 'text');
+    input.setAttribute('value', `${task}`);
+    input.className = 'input edit-input';
+    input.setAttribute('readonly', 'true');
 
-    li.appendChild(link);
+    const deleteLink = document.createElement('a');
+    deleteLink.className = 'delete-item';
+    deleteLink.innerHTML = `<i class="fa fa-trash-alt"></i>`;
+
+    const editLink = document.createElement('a');
+    editLink.className = 'edit-item';
+    editLink.innerHTML = `<i class="far fa-edit"></i>`;
+
+    li.appendChild(input);
+    li.appendChild(deleteLink);
+    li.appendChild(editLink);
 
     taskList.appendChild(li);
   });
@@ -50,25 +66,38 @@ function getTasks() {
 function addTask(e) {
   if (taskInput.value === '') {
     alert('Please add a task');
+  } else {
+    const li = document.createElement('li');
+    li.className = 'collection-item';
+
+    const input = document.createElement('input');
+    input.setAttribute('type', 'text');
+    input.setAttribute('value', `${taskInput.value}`);
+    input.className = 'input edit-input';
+    input.setAttribute('readonly', 'true');
+
+    const deleteLink = document.createElement('a');
+    deleteLink.className = 'delete-item';
+    deleteLink.innerHTML = `<i class="fa fa-trash-alt"></i>`;
+
+    const editLink = document.createElement('a');
+    editLink.className = 'edit-item';
+    editLink.innerHTML = `<i class="far fa-edit"></i>`;
+
+    li.appendChild(input);
+    li.appendChild(editLink);
+    li.appendChild(deleteLink);
+
+    taskList.appendChild(li);
+
+    console.log(li);
+    // Store in local storage
+    storeTaskInLocalStorage(taskInput.value);
+
+    taskInput.value = '';
   }
 
   // Create li
-  const li = document.createElement('li');
-  li.className = 'collection-item';
-  li.appendChild(document.createTextNode(taskInput.value));
-
-  const link = document.createElement('a');
-  link.className = 'delete-item';
-  link.innerHTML = `<i class="fa fa-trash-alt"></i>`;
-
-  li.appendChild(link);
-
-  taskList.appendChild(li);
-
-  // Store in local storage
-  storeTaskInLocalStorage(taskInput.value);
-
-  taskInput.value = '';
 
   e.preventDefault();
 }
@@ -114,6 +143,21 @@ function removeTaskFromLocalStorage(taskItem) {
   localStorage.setItem('tasks', JSON.stringify(tasks));
 }
 
+function editTask(e) {
+  if (e.target.parentElement.classList.contains('edit-item')) {
+    const input = e.target.parentElement.parentElement.firstChild;
+    input.removeAttribute('readonly');
+    input.focus();
+    setCaretPosition(input, input.value.length);
+  }
+}
+
+function uneditTask(e) {
+  if (event.keyCode === 13) {
+    console.log(e.target);
+  }
+}
+
 function clearTasks() {
   // taskList.innerHTML = '';
   if (confirm('Are you sure you wanna delete all your tasks?')) {
@@ -148,13 +192,32 @@ function openNav() {
   main.style.marginLeft = '15%';
   sidebar.style.width = '15%';
   sidebar.style.display = 'block';
-  openSidebar.style.display = 'none';
+  openSidebar.style.zIndex = '-1';
 }
 
 function closeNav() {
   main.style.marginLeft = '0%';
   sidebar.style.display = 'none';
-  openSidebar.style.display = 'inline-block';
+  openSidebar.style.zIndex = '1';
 }
 
-function date() {}
+function setCaretPosition(ctrl, pos) {
+  if (ctrl.setSelectionRange) {
+    ctrl.focus();
+    ctrl.setSelectionRange(pos, pos);
+  }
+}
+
+// function createDate() {
+//   const date = new Date();
+
+//   const dateSpan = document.createElement('span');
+//   dateSpan.className = 'date';
+
+//   dateSpan.appendChild(document.createTextNode(date));
+
+//   dateString = toString(date);
+//   console.log(typeof dateString);
+
+//   today.appendChild(Object(dateString));
+// }

@@ -46,8 +46,6 @@ label {
 
 input {
   font-size: inherit;
-  padding: 0.4em;
-  margin: 0 0 0.5em 0;
   border: 1px solid #ccc;
   border-radius: 2px;
 }
@@ -109,6 +107,10 @@ input:disabled {
 
 .current {
   background: var(--secondary-dark);
+}
+
+.date {
+  font-size: 0.9rem;
 }
 
 .field {
@@ -173,14 +175,11 @@ input:disabled {
 #navbar .navbar-container {
   height: 100%;
   display: flex;
+  justify-content: space-between;
   align-items: center;
   position: relative;
 }
 
-#navbar .navbar-container .logo {
-  position: absolute;
-  right: 0;
-}
 /* ----Sidebar---- */
 .sidebar {
   display: none;
@@ -253,10 +252,25 @@ main .main-container > div {
   position: absolute;
   right: 10px;
   cursor: pointer;
+  opacity: 0.7;
   transition: all 0.1s ease-in;
 }
+
 .task-list .collection .collection-item .delete-item:hover {
   color: rgb(207, 0, 0);
+  opacity: 1;
+}
+
+.task-list .collection .collection-item .edit-item {
+  position: absolute;
+  right: 35px;
+  cursor: pointer;
+  opacity: 0.5;
+  transition: all 0.1s ease-in;
+}
+
+.task-list .collection .collection-item .edit-item:hover {
+  opacity: 1;
 }
 
 /* ----Footer---- */
