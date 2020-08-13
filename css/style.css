@@ -280,26 +280,29 @@ main .main-container > div {
 }
 
 /* ----Footer---- */
-footer {
+.footer {
   height: 10rem;
-  color: rgb(168, 168, 168);
-  font-size: 0.9rem;
-}
-
-footer .footer-container {
-  height: 100%;
+  color: var(--primary-light);
+  /* background-color: #98a6ad; */
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  align-content: center;
+  gap: 1rem;
 }
-
-footer .footer-container ul {
+.footer__social {
   display: flex;
-  justify-content: space-between;
-  width: 12rem;
-  margin-top: 0.5rem;
+  gap: 1.5rem;
+}
+.footer__link {
+  color: var(--primary-light);
+}
+.footer__icon {
+  cursor: pointer;
+}
+.footer__icon--heart {
+  color: #f83a60;
+  margin: 0 0.5rem;
 }
 /* ----Keyframes---- */
 @keyframes animateleft {
