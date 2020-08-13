@@ -244,7 +244,7 @@ main .main-container > div {
 
 /* ----Task list---- */
 .task-list .collection {
-  margin-bottom: 1.5rem;
+  margin: 3rem 0 4rem;
 }
 
 .task-list .collection .collection-item {
